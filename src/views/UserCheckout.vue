@@ -75,46 +75,46 @@
 </template>
 
 <script>
-import FrontNavbar from './FrontNavbar.vue'
+import FrontNavbar from "./FrontNavbar.vue";
 export default {
-  data () {
+  data() {
     return {
       order: {
-        user: {}
+        user: {},
       },
-      orderId: '',
-      isLoading: false
-    }
+      orderId: "",
+      isLoading: false,
+    };
   },
   components: {
-    FrontNavbar
+    FrontNavbar,
   },
   methods: {
-    getOrder () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`
-      this.isLoading = true
+    getOrder() {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
+      this.isLoading = true;
       this.$http.get(url).then((res) => {
         if (res.data.success) {
-          this.isLoading = false
-          this.order = res.data.order
+          this.isLoading = false;
+          this.order = res.data.order;
         }
-      })
+      });
     },
-    payOrder () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
-      this.isLoading = true
+    payOrder() {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
+      this.isLoading = true;
       this.$http.post(url).then((res) => {
-        this.isLoading = false
+        this.isLoading = false;
         if (res.data.success) {
-          this.getOrder()
+          this.getOrder();
         }
-      })
-    }
+      });
+    },
   },
-  created () {
-    this.orderId = this.$route.params.orderId
-    console.log(this.orderId)
-    this.getOrder()
-  }
-}
+  created() {
+    this.orderId = this.$route.params.orderId;
+    console.log(this.orderId);
+    this.getOrder();
+  },
+};
 </script>

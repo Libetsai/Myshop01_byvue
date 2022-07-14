@@ -98,37 +98,37 @@
 </template>
 
 <script>
-import Modal from 'bootstrap/js/dist/modal'
-import modalMixin from '@/mixins/modalMixin'
+import Modal from "bootstrap/js/dist/modal";
+import modalMixin from "@/mixins/modalMixin";
 export default {
-  name: 'coupomModal',
+  name: "coupomModal",
   props: {
-    coupon: {}
+    coupon: {},
   },
   watch: {
-    coupon () {
-      this.tempCoupon = this.coupon
+    coupon() {
+      this.tempCoupon = this.coupon;
       const dateAndTime = new Date(this.tempCoupon.due_date * 1000)
         .toISOString()
-        .split('T')
-      this.due_date = dateAndTime[0]
+        .split("T");
+      this.due_date = dateAndTime[0];
     },
-    due_date () {
-      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000)
-    }
+    due_date() {
+      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000);
+    },
   },
-  data () {
+  data() {
     return {
       modal: {},
       tempCoupon: {
         // is_enabled = false
       },
-      due_date: ''
-    }
+      due_date: "",
+    };
   },
-  mounted () {
-    this.modal = new Modal(this.$refs.modal)
+  mounted() {
+    this.modal = new Modal(this.$refs.modal);
   },
-  mixins: [modalMixin]
-}
+  mixins: [modalMixin],
+};
 </script>

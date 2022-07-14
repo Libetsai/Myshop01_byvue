@@ -47,16 +47,16 @@
   </div>
 </template>
 <script>
-import modalMixin from '@/mixins/modalMixin'
+import modalMixin from "@/mixins/modalMixin";
 export default {
   props: {
-    item: {}
+    item: {},
   },
-  data () {
+  data() {
     return {
-      modal: ''
-    }
+      modal: "",
+    };
   },
-  mixins: [modalMixin]
-}
+  mixins: [modalMixin],
+};
 </script>

@@ -76,29 +76,29 @@
 </template>
 
 <script>
-import OrderModal from '@/components/OrderModal.vue'
+import OrderModal from "@/components/OrderModal.vue";
 export default {
-  data () {
+  data() {
     return {
       modal: {},
       order: [],
-      tempOrder: {}
-    }
+      tempOrder: {},
+    };
   },
   components: {
-    OrderModal
+    OrderModal,
   },
   methods: {
-    getOrders () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders`
+    getOrders() {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders`;
       this.$http.get(url, this.tempProduct).then((response) => {
-        this.orders = response.data.orders
-        console.log(response)
-      })
-    }
+        this.orders = response.data.orders;
+        console.log(response);
+      });
+    },
   },
-  created () {
-    this.getOrders()
-  }
-}
+  created() {
+    this.getOrders();
+  },
+};
 </script>

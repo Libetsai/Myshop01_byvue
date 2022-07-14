@@ -1,18 +1,18 @@
 <template>
-    <ToastMessage></ToastMessage>
-    <router-view></router-view>
+  <ToastMessage></ToastMessage>
+  <router-view></router-view>
 </template>
 <script>
-import emitter from '@/methods/emitter'
-import ToastMessage from '@/components/ToastMessage.vue'
+import emitter from "@/methods/emitter";
+import ToastMessage from "@/components/ToastMessage.vue";
 export default {
   components: {
-    ToastMessage
+    ToastMessage,
   },
-  provide () {
+  provide() {
     return {
-      emitter
-    }
-  }
-}
+      emitter,
+    };
+  },
+};
 </script>

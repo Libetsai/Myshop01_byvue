@@ -4,30 +4,30 @@
   </div>
 </template>
 <style lang="scss" scoped>
-  .toastcontainer{
-    position: fixed;
-    top: 100px;
-    left: 85%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-  }
+.toastcontainer {
+  position: fixed;
+  top: 100px;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
 </style>
 <script>
-import Toast from '@/components/Toast.vue'
+import Toast from "@/components/Toast.vue";
 export default {
   components: { Toast },
-  data () {
+  data() {
     return {
-      messages: []
-    }
+      messages: [],
+    };
   },
-  inject: ['emitter'],
-  mounted () {
+  inject: ["emitter"],
+  mounted() {
     // message是外部傳來的資訊
-    this.emitter.on('push-message', (message) => {
-      const { style = 'success', title, content } = message
-      this.messages.push({ style, title, content })
-    })
-  }
-}
+    this.emitter.on("push-message", (message) => {
+      const { style = "success", title, content } = message;
+      this.messages.push({ style, title, content });
+    });
+  },
+};
 </script>

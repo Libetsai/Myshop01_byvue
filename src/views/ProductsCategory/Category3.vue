@@ -63,64 +63,64 @@
       </div>
     </div>
   </div>
-  <Gotop/>
+  <Gotop />
 </template>
 
 <script>
-import Gotop from '@/components/Gotop.vue'
+import Gotop from "@/components/Gotop.vue";
 export default {
-  data () {
+  data() {
     return {
       products: [],
       product: {},
       pagination: {},
       status: {
-        loadingItem: ''
-      }
-    }
+        loadingItem: "",
+      },
+    };
   },
   components: {
-    Gotop
+    Gotop,
   },
-  inject: ['emitter'],
+  inject: ["emitter"],
   methods: {
-    getProducts () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
-      this.isLoading = true
+    getProducts() {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
+      this.isLoading = true;
       this.$http.get(url).then((res) => {
         if (res.data.success) {
           res.data.products.forEach((item) => {
-            if (item.category === '曼巴') {
-              this.products.push(item)
+            if (item.category === "曼巴") {
+              this.products.push(item);
             }
-          })
-          this.isLoading = false
+          });
+          this.isLoading = false;
         }
-      })
+      });
     },
-    getProduct (id) {
-      this.$router.push(`/user/product/${id}`)
+    getProduct(id) {
+      this.$router.push(`/user/product/${id}`);
     },
-    addCart (id) {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      this.status.loadingItem = id
+    addCart(id) {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.status.loadingItem = id;
       const cart = {
         product_id: id,
-        qty: 1
-      }
+        qty: 1,
+      };
       this.$http.post(url, { data: cart }).then((res) => {
-        this.status.loadingItem = ''
-        this.$httpMessageState(res, '加入購物車')
-        this.emitter.emit('resetCart')
-      })
+        this.status.loadingItem = "";
+        this.$httpMessageState(res, "加入購物車");
+        this.emitter.emit("resetCart");
+      });
     },
-    toProducts (e) {
-      const path = `/user/${e.target.value}`
-      this.$router.push(path)
-    }
+    toProducts(e) {
+      const path = `/user/${e.target.value}`;
+      this.$router.push(path);
+    },
   },
-  created () {
-    this.getProducts()
-  }
-}
+  created() {
+    this.getProducts();
+  },
+};
 </script>

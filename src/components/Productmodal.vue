@@ -187,48 +187,48 @@
 </template>
 
 <script>
-import Modal from 'bootstrap/js/dist/modal'
-import modalMixin from '@/mixins/modalMixin'
+import Modal from "bootstrap/js/dist/modal";
+import modalMixin from "@/mixins/modalMixin";
 export default {
   props: {
     product: {
       type: Object,
-      default () {
-        return {}
-      }
-    }
+      default() {
+        return {};
+      },
+    },
   },
   watch: {
-    product () {
-      this.tempProduct = this.product
+    product() {
+      this.tempProduct = this.product;
       // 單向數據流,由外層傳至此內層
-    }
+    },
   },
-  data () {
+  data() {
     return {
       modal: {},
-      tempProduct: {}
-    }
+      tempProduct: {},
+    };
   },
   methods: {
-    uploadFile () {
-      const uploadedFile = this.$refs.fileInput.files[0]
-      const formData = new FormData()
-      formData.append('file-to-upload', uploadedFile)
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`
+    uploadFile() {
+      const uploadedFile = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+      formData.append("file-to-upload", uploadedFile);
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
       this.$http.post(url, formData).then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         if (response.data.success) {
-          this.tempProduct.imageUrl = response.data.imageUrl
+          this.tempProduct.imageUrl = response.data.imageUrl;
           // 儲存到遠端路徑
         }
-      })
+      });
     },
-    mounted () {
-      this.modal = new Modal(this.$refs.modal)
-    }
+    mounted() {
+      this.modal = new Modal(this.$refs.modal);
+    },
   },
 
-  mixins: [modalMixin]
-}
+  mixins: [modalMixin],
+};
 </script>

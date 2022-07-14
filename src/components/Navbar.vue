@@ -45,22 +45,22 @@
 <script>
 export default {
   methods: {
-    logout () {
-      const api = `${process.env.VUE_APP_API}logout`
+    logout() {
+      const api = `${process.env.VUE_APP_API}logout`;
       this.$http.post(api, this.user).then((res) => {
         if (res.data.success) {
-          this.$router.push('/user/sellerlogin')
+          this.$router.push("/user/sellerlogin");
         }
-      })
+      });
     },
-    logouthome () {
-      const api = `${process.env.VUE_APP_API}logout`
+    logouthome() {
+      const api = `${process.env.VUE_APP_API}logout`;
       this.$http.post(api, this.user).then((res) => {
         if (res.data.success) {
-          this.$router.push('/cart/categoryall')
+          this.$router.push("/cart/categoryall");
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>

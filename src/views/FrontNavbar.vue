@@ -130,64 +130,64 @@
   </nav>
 </template>
 <script>
-import Dropdown from 'bootstrap/js/dist/dropdown'
+import Dropdown from "bootstrap/js/dist/dropdown";
 export default {
   name: {
-    Dropdown
+    Dropdown,
   },
-  data () {
+  data() {
     return {
       cart: {},
       carts: {},
       status: {
-        loadingItem: '' // 對應品項 id
-      }
-    }
+        loadingItem: "", // 對應品項 id
+      },
+    };
   },
-  inject: ['emitter'],
+  inject: ["emitter"],
   methods: {
-    getCart () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      this.isLoading = true
+    getCart() {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.isLoading = true;
       this.$http.get(url).then((res) => {
-        console.log(res)
-        this.cart = res.data.data
-        this.carts = res.data.data.carts
-        this.isLoading = false
-      })
+        console.log(res);
+        this.cart = res.data.data;
+        this.carts = res.data.data.carts;
+        this.isLoading = false;
+      });
     },
-    updateCart (item) {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
-      this.isLoading = true
-      this.status.loadingItem = item.id
+    updateCart(item) {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+      this.isLoading = true;
+      this.status.loadingItem = item.id;
       const cart = {
         product_id: item.product_id,
-        qty: item.qty
-      }
+        qty: item.qty,
+      };
       this.$http.put(url, { data: cart }).then((res) => {
-        console.log(res)
-        this.status.loadingItem = ''
-        this.getCart()
-      })
+        console.log(res);
+        this.status.loadingItem = "";
+        this.getCart();
+      });
     },
-    removeCartItem (id) {
-      this.status.loadingItem = id
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`
-      this.isLoading = true
+    removeCartItem(id) {
+      this.status.loadingItem = id;
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`;
+      this.isLoading = true;
       this.$http.delete(url).then((res) => {
-        this.$httpMessageState(res, '移除購物車')
-        this.status.loadingItem = ''
-        this.getCart()
-        this.isLoading = false
-      })
+        this.$httpMessageState(res, "移除購物車");
+        this.status.loadingItem = "";
+        this.getCart();
+        this.isLoading = false;
+      });
     },
-    goCart () {
-      this.$router.push('/user/usertotalcheck')
-    }
+    goCart() {
+      this.$router.push("/user/usertotalcheck");
+    },
   },
-  created () {
-    this.getCart()
-    this.emitter.on('resetCart', this.getCart)
-  }
-}
+  created() {
+    this.getCart();
+    this.emitter.on("resetCart", this.getCart);
+  },
+};
 </script>

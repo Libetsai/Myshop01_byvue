@@ -21,7 +21,10 @@
           {{ page }}
         </a>
       </li>
-      <li class="page-item" :class="{ disabled: pages.current_page === pages.total_pages }">
+      <li
+        class="page-item"
+        :class="{ disabled: pages.current_page === pages.total_pages }"
+      >
         <a
           class="page-link"
           href="#"
@@ -39,11 +42,11 @@
 // :pages="{ 頁碼資訊 }"
 // @emitPages="更新頁面事件"
 export default {
-  props: ['pages'],
+  props: ["pages"],
   methods: {
-    updatePage (page) {
-      this.$emit('emit-pages', page)
-    }
-  }
-}
+    updatePage(page) {
+      this.$emit("emit-pages", page);
+    },
+  },
+};
 </script>

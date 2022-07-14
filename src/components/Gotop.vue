@@ -10,32 +10,32 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       scrollNum: 0,
-      isTop: false
-    }
+      isTop: false,
+    };
   },
   methods: {
-    goTop () {
-      document.documentElement.scrollTop = 0
-    }
+    goTop() {
+      document.documentElement.scrollTop = 0;
+    },
   },
-  mounted () {
-    window.addEventListener('scroll', () => {
+  mounted() {
+    window.addEventListener("scroll", () => {
       const top =
         document.documentElement.scrollTop ||
         document.body.scrollTop ||
-        window.pageYOffset
-      this.scrollNum = top
+        window.pageYOffset;
+      this.scrollNum = top;
       if (top >= 100) {
-        this.isTop = true
+        this.isTop = true;
       } else {
-        this.isTop = false
+        this.isTop = false;
       }
-    })
-  }
-}
+    });
+  },
+};
 </script>
 
 <style scoped>

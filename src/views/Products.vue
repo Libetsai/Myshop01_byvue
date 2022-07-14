@@ -56,103 +56,103 @@
 </template>
 
 <script>
-import Productmodal from '../components/Productmodal.vue'
-import DelModal from '../components/DelModal.vue'
-import Pagination from '../components/Pagination.vue'
+import Productmodal from "../components/Productmodal.vue";
+import DelModal from "../components/DelModal.vue";
+import Pagination from "../components/Pagination.vue";
 export default {
-  data () {
+  data() {
     return {
       products: [],
       pagination: {},
       tempProduct: {},
       isNew: false,
-      isLoading: false
-    }
+      isLoading: false,
+    };
   },
   components: {
     Productmodal,
     DelModal,
-    Pagination
+    Pagination,
   },
-  inject: ['emitter'],
+  inject: ["emitter"],
   methods: {
-    getProducts (page = 1) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`
-      this.isLoading = true
+    getProducts(page = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`;
+      this.isLoading = true;
       this.$http.get(api).then((res) => {
-        this.isLoading = false
+        this.isLoading = false;
         if (res.data.success) {
-          console.log(res.data)
-          this.products = res.data.products
-          this.pagination = res.data.pagination
+          console.log(res.data);
+          this.products = res.data.products;
+          this.pagination = res.data.pagination;
         }
-      })
+      });
     },
-    openModal (isNew, item) {
+    openModal(isNew, item) {
       if (isNew) {
-        this.tempProduct = {}
+        this.tempProduct = {};
       } else {
-        this.tempProduct = { ...item }
+        this.tempProduct = { ...item };
       }
-      this.isNew = isNew
-      const productComponent = this.$refs.productmodal
-      productComponent.showModal()
+      this.isNew = isNew;
+      const productComponent = this.$refs.productmodal;
+      productComponent.showModal();
     },
-    updateProduct (item) {
-      this.tempProduct = item
+    updateProduct(item) {
+      this.tempProduct = item;
       // 新增
-      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
-      let httpMethod = 'post'
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
+      let httpMethod = "post";
       // 編輯
       if (!this.isNew) {
-        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`
-        httpMethod = 'put'
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+        httpMethod = "put";
       }
-      this.isLoading = true
-      const productComponent = this.$refs.productmodal
+      this.isLoading = true;
+      const productComponent = this.$refs.productmodal;
       this.$http[httpMethod](api, { data: this.tempProduct }).then(
         (response) => {
-          console.log(response)
-          productComponent.hideModal()
+          console.log(response);
+          productComponent.hideModal();
           if (response.data.success) {
-            this.getProducts()
-            this.emitter.emit('push-message', {
-              style: 'success',
-              title: '更新成功'
-            })
+            this.getProducts();
+            this.emitter.emit("push-message", {
+              style: "success",
+              title: "更新成功",
+            });
           } else {
-            this.emitter.emit('push-message', {
-              style: 'danger',
-              title: '更新失敗',
-              content: response.data.message.join('、')
-            })
+            this.emitter.emit("push-message", {
+              style: "danger",
+              title: "更新失敗",
+              content: response.data.message.join("、"),
+            });
           }
         }
-      )
-      this.isLoading = false
+      );
+      this.isLoading = false;
     },
 
     // 開啟刪除
-    openDelModal (item) {
-      this.tempProduct = { ...item } // 載入當前資料
-      const delComponent = this.$refs.delModal
-      delComponent.showModal()
+    openDelModal(item) {
+      this.tempProduct = { ...item }; // 載入當前資料
+      const delComponent = this.$refs.delModal;
+      delComponent.showModal();
     },
     // 刪除視窗裡的「確認刪除」按鈕
-    delProduct () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
-      this.isLoading = true
+    delProduct() {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
+      this.isLoading = true;
       this.$http.delete(url).then((response) => {
-        console.log(response.data)
-        const delComponent = this.$refs.delModal
-        delComponent.hideModal()
-        this.getProducts()
-        this.isLoading = false
-      })
-    }
+        console.log(response.data);
+        const delComponent = this.$refs.delModal;
+        delComponent.hideModal();
+        this.getProducts();
+        this.isLoading = false;
+      });
+    },
   },
-  created () {
-    this.getProducts()
-  }
-}
+  created() {
+    this.getProducts();
+  },
+};
 </script>

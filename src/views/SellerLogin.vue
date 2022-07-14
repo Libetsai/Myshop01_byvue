@@ -77,61 +77,61 @@
 </template>
 
 <script>
-import FrontNavbar from './FrontNavbar.vue'
+import FrontNavbar from "./FrontNavbar.vue";
 export default {
-  data () {
+  data() {
     return {
-      checked: 'false',
+      checked: "false",
       user: {
-        username: '',
-        password: ''
-      }
-    }
+        username: "",
+        password: "",
+      },
+    };
   },
   components: {
-    FrontNavbar
+    FrontNavbar,
   },
   methods: {
-    signIn () {
-      const api = `${process.env.VUE_APP_API}admin/signin`
+    signIn() {
+      const api = `${process.env.VUE_APP_API}admin/signin`;
       this.$http.post(api, this.user).then((res) => {
         if (res.data.success) {
-          const { token, expired } = res.data
-          document.cookie = `hexToken=${token}; expires=${new Date(expired)}`
-          this.$router.push('/dashboard/products')
+          const { token, expired } = res.data;
+          document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
+          this.$router.push("/dashboard/products");
         }
-      })
-      this.checkaccount()
+      });
+      this.checkaccount();
     },
-    checkaccount () {
+    checkaccount() {
       if (this.checked === true) {
-        this.setcookie(this.user.username)
+        this.setcookie(this.user.username);
       } else {
-        this.delCookie()
+        this.delCookie();
       }
     },
-    setcookie (name) {
-      const exp = new Date()
-      document.cookie = `myname=${name}; expires=${exp}`
+    setcookie(name) {
+      const exp = new Date();
+      document.cookie = `myname=${name}; expires=${exp}`;
     },
-    getcookie () {
+    getcookie() {
       if (document.cookie.length > 0) {
-        const arr = document.cookie.split(';')
+        const arr = document.cookie.split(";");
         arr.forEach((item) => {
-          const arr2 = item.split('=')
-          if (arr2[0] === 'myname') {
-            const account = arr2[1]
-            this.user.username = account
+          const arr2 = item.split("=");
+          if (arr2[0] === "myname") {
+            const account = arr2[1];
+            this.user.username = account;
           }
-        })
+        });
       }
     },
-    delCookie () {
-      this.setcookie('', '', -1)
-    }
+    delCookie() {
+      this.setcookie("", "", -1);
+    },
   },
-  mounted () {
-    this.getcookie()
-  }
-}
+  mounted() {
+    this.getcookie();
+  },
+};
 </script>

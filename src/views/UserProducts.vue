@@ -70,69 +70,69 @@
   </div>
 </template>
 <script>
-import FrontNavbar from './FrontNavbar.vue'
+import FrontNavbar from "./FrontNavbar.vue";
 export default {
-  data () {
+  data() {
     return {
       product: {},
       products: [],
       quantity: 1,
-      id: '',
+      id: "",
       status: {
-        loadingItem: ''
+        loadingItem: "",
       },
-      followData: JSON.parse(localStorage.getItem('follow')) || []
-    }
+      followData: JSON.parse(localStorage.getItem("follow")) || [],
+    };
   },
   components: {
-    FrontNavbar
+    FrontNavbar,
   },
   methods: {
-    getProduct () {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`
-      this.isLoading = true
+    getProduct() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
+      this.isLoading = true;
       this.$http.get(api).then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         if (res.data.success) {
-          this.product = res.data.product
-          this.isLoading = false
+          this.product = res.data.product;
+          this.isLoading = false;
         }
-      })
+      });
     },
-    addToCart (id, qty = this.quantity) {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      this.status.loadingItem = id
+    addToCart(id, qty = this.quantity) {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.status.loadingItem = id;
       const cart = {
         product_id: id,
-        qty
-      }
+        qty,
+      };
       this.$http.post(url, { data: cart }).then((res) => {
-        this.status.loadingItem = ''
-        this.$httpMessageState(res, '加入購物車')
-        this.emitter.emit('resetCart')
-      })
+        this.status.loadingItem = "";
+        this.$httpMessageState(res, "加入購物車");
+        this.emitter.emit("resetCart");
+      });
     },
-    addFollow (id) {
-      const followId = this.followData.indexOf(id)
+    addFollow(id) {
+      const followId = this.followData.indexOf(id);
       if (followId === -1) {
-        this.followData.push(id)
-        this.emitter.emit('push-message', {
-          style: 'success',
-          title: '加入收藏成功'
-        })
+        this.followData.push(id);
+        this.emitter.emit("push-message", {
+          style: "success",
+          title: "加入收藏成功",
+        });
       } else {
-        this.followData.splice(followId, 1)
-        this.emitter.emit('push-message', {
-          style: 'success',
-          title: '取消收藏成功'
-        })
+        this.followData.splice(followId, 1);
+        this.emitter.emit("push-message", {
+          style: "success",
+          title: "取消收藏成功",
+        });
       }
-      localStorage.setItem('follow', JSON.stringify(this.followData))
-    }
+      localStorage.setItem("follow", JSON.stringify(this.followData));
+    },
   },
-  created () {
-    this.id = this.$route.params.productId
-    this.getProduct()
-  }
-}
+  created() {
+    this.id = this.$route.params.productId;
+    this.getProduct();
+  },
+};
 </script>
