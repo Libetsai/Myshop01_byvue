@@ -28,3 +28,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 "# Libetsai-Myshop01_byvu" 
 "# Libetsai-Myshop01_byvu" 
 "# Libetsai-Myshop01_byvu" 
+"# Libetsai-Myshop01_byvue" 
