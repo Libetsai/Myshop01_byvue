@@ -1,0 +1,27 @@
+[debug] [2022-07-14T14:07:45.075Z] ----------------------------------------------------------------------
+[debug] [2022-07-14T14:07:45.076Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\libe\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-07-14T14:07:45.077Z] CLI Version:   11.2.2
+[debug] [2022-07-14T14:07:45.077Z] Platform:      win32
+[debug] [2022-07-14T14:07:45.077Z] Node Version:  v16.16.0
+[debug] [2022-07-14T14:07:45.078Z] Time:          Thu Jul 14 2022 22:07:45 GMT+0800 (台北標準時間)
+[debug] [2022-07-14T14:07:45.078Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-14T14:07:45.134Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-14T14:07:45.134Z] > authorizing via signed-in user (a0910032300@gmail.com)
+[debug] [2022-07-14T14:07:45.134Z] [iam] checking project myshop01byvue for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-07-14T14:07:45.136Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/myshop01byvue:testIamPermissions [none]
+[debug] [2022-07-14T14:07:45.136Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/myshop01byvue:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-07-14T14:07:46.040Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/myshop01byvue:testIamPermissions 200
+[debug] [2022-07-14T14:07:46.040Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/myshop01byvue:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-07-14T14:07:46.042Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/myshop01byvue [none]
+[debug] [2022-07-14T14:07:46.424Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/myshop01byvue 200
+[debug] [2022-07-14T14:07:46.424Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/myshop01byvue {"projectId":"myshop01byvue","projectNumber":"138249592211","displayName":"Myshop01byvue","name":"projects/myshop01byvue","resources":{"hostingSite":"myshop01byvue"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'myshop01byvue'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-07-14T14:07:46.429Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/myshop01byvue [none]
+[debug] [2022-07-14T14:07:46.756Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/myshop01byvue 200
+[debug] [2022-07-14T14:07:46.756Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/myshop01byvue {"projectId":"myshop01byvue","projectNumber":"138249592211","displayName":"Myshop01byvue","name":"projects/myshop01byvue","resources":{"hostingSite":"myshop01byvue"},"state":"ACTIVE"}
+[debug] [2022-07-14T14:07:46.758Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/138249592211/sites/myshop01byvue/versions [none]
+[debug] [2022-07-14T14:07:46.758Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/138249592211/sites/myshop01byvue/versions {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
